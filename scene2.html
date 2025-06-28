@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Announcement</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-image: url('https://i.pinimg.com/originals/53/d1/0d/53d10d40110d79dcf0bbc19743b4a883.jpg'); /* Replace with valid URL */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background-color: #1c1c2e;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 0 30px #000;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+    p {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+    .choice-btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #3c3c8c;
+      color: #fff;
+      font-family: 'Fira Code', monospace;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .choice-btn:hover {
+      background-color: #5050aa;
+    }
+    #result {
+      margin-top: 20px;
+      font-style: italic;
+      color: #9ae7ff;
+    }
+    .stats {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>The Announcement</h1>
+    <p>
+      A robotic voice fills the room:<br>
+      <strong>“At dawn, one of you will vanish.”</strong>
+    </p>
+    <p>The others begin murmuring nervously. You must act fast. What do you do?</p>
+
+    <button class="choice-btn" onclick="selectChoice(1)">Propose a team alliance</button>
+    <button class="choice-btn" onclick="selectChoice(2)">Accuse Random Human playfully</button>
+    <button class="choice-btn" onclick="selectChoice(3)">Ask Anya what she knows</button>
+    <button class="choice-btn" onclick="selectChoice(4)">Say nothing and observe</button>
+    <button class="choice-btn" onclick="selectChoice(5)">Say “I’m the killer” as a joke</button>
+
+    <div id="result"></div>
+    <div class="stats">
+      Bond: <span id="bond">0</span> | Suspicion: <span id="suspicion">0</span> | Clarity: <span id="clarity">0</span>
+    </div>
+  </div>
+
+  <script src="js/global.js"></script>
+  <script>
+    function selectChoice(option) {
+      const result = document.getElementById("result");
+
+      switch(option) {
+        case 1:
+          result.innerText = "Some nod. A few remain silent. A sliver of trust is born.";
+          changeStats({ bondDelta: 2, clarityDelta: 1 });
+          break;
+        case 2:
+          result.innerText = "The room chuckles. Random Human rolls their eyes.";
+          changeStats({ bondDelta: 1, suspicionDelta: 1 });
+          break;
+        case 3:
+          result.innerText = "Anya whispers: 'Someone didn’t sleep at all last night...'";
+          changeStats({ clarityDelta: 2 });
+          break;
+        case 4:
+          result.innerText = "Your silence draws uneasy glances. You're becoming mysterious.";
+          changeStats({ suspicionDelta: 2 });
+          break;
+        case 5:
+          result.innerText = "The mood shifts. A few laugh. A few glare.";
+          changeStats({ suspicionDelta: 3 });
+          break;
+      }
+
+      goToScene('scene3.html');
+    }
+  </script>
+
+</body>
+</html>

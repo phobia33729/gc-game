@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scene 3: Trust or Trap</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-image: url('https://i.pinimg.com/originals/e3/8b/d1/e38bd1201251f91e3f206bdb4b181888.jpg'); /* Replace with valid URL */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background-color: #1c1c2e;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 0 30px #000;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+    p {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+    .choice-btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #3c3c8c;
+      color: #fff;
+      font-family: 'Fira Code', monospace;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .choice-btn:hover {
+      background-color: #5050aa;
+    }
+    #result {
+      margin-top: 20px;
+      font-style: italic;
+      color: #9ae7ff;
+    }
+    .stats {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Trust or Trap</h1>
+    <p>
+      The AI opens a hatch. Inside is a single note that reads:  
+      <br><strong>"One of you has already lied."</strong>
+    </p>
+    <p>The room goes silent. Eyes shift. You decide to:</p>
+
+    <button class="choice-btn" onclick="selectChoice(1)">Accuse DPS (too calm)</button>
+    <button class="choice-btn" onclick="selectChoice(2)">Back up Bocchi, who looks scared</button>
+    <button class="choice-btn" onclick="selectChoice(3)">Speak logically, calm the group</button>
+    <button class="choice-btn" onclick="selectChoice(4)">Whisper to Scum for a secret alliance</button>
+    <button class="choice-btn" onclick="selectChoice(5)">Stay near the car (just in case)</button>
+
+    <div id="result"></div>
+    <div class="stats">
+      Bond: <span id="bond">0</span> | Suspicion: <span id="suspicion">0</span> | Clarity: <span id="clarity">0</span>
+    </div>
+  </div>
+
+  <script src="js/global.js"></script>
+  <script>
+    function selectChoice(option) {
+      const result = document.getElementById("result");
+
+      switch(option) {
+        case 1:
+          result.innerText = "DPS denies it, but now tension rises. Trust begins to crack.";
+          changeStats({ suspicionDelta: 2 });
+          break;
+        case 2:
+          result.innerText = "Bocchi looks relieved. Someone smiles in the corner.";
+          changeStats({ bondDelta: 2 });
+          break;
+        case 3:
+          result.innerText = "You speak up. Even the car seems to nod in agreement.";
+          changeStats({ clarityDelta: 2, bondDelta: 1 });
+          break;
+        case 4:
+          result.innerText = "Scum whispers back: 'I already know who it is...'";
+          changeStats({ bondDelta: 1, clarityDelta: 1 });
+          break;
+        case 5:
+          result.innerText = "You lean on the car. It revs in response. You're not sure if that means anything.";
+          changeStats({ clarityDelta: 1 });
+          break;
+      }
+
+      goToScene('scene4.html');
+    }
+  </script>
+
+</body>
+</html>

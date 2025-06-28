@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scene 8: Lines Drawn</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #0e0e1a;
+      background-image: url('https://yodoozy.com/wp-content/uploads/2021/07/thumbnail-3.jpg');
+      color: #e0e0ff;
+      font-family: 'Fira Code', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      background-color: #1c1c2e;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 0 30px #000;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+    p {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+    .choice-btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #3c3c8c;
+      color: #fff;
+      font-family: 'Fira Code', monospace;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .choice-btn:hover {
+      background-color: #5050aa;
+    }
+    #result {
+      margin-top: 20px;
+      font-style: italic;
+      color: #9ae7ff;
+    }
+    .stats {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Lines Drawn</h1>
+    <p>
+      A red line appears across the floor. A voice echoes:
+      <br><strong>“Choose. Who stands with you? Who stands against?”</strong>
+    </p>
+    <p>
+      Everyone is frozen. You step forward and...
+    </p>
+
+    <button class="choice-btn" onclick="selectChoice(1)">Side with Anya and Bocchi</button>
+    <button class="choice-btn" onclick="selectChoice(2)">Side with Madara and Minato</button>
+    <button class="choice-btn" onclick="selectChoice(3)">Stay neutral, step back</button>
+    <button class="choice-btn" onclick="selectChoice(4)">Tell everyone this is a trap</button>
+    <button class="choice-btn" onclick="selectChoice(5)">Step over the line silently, alone</button>
+
+    <div id="result"></div>
+    <div class="stats">
+      Bond: <span id="bond">0</span> | Suspicion: <span id="suspicion">0</span> | Clarity: <span id="clarity">0</span>
+    </div>
+  </div>
+
+  <script src="js/global.js"></script>
+  <script>
+    function selectChoice(option) {
+      const result = document.getElementById("result");
+
+      switch(option) {
+        case 1:
+          result.innerText = "Anya nods. Bocchi hesitates, then joins you. A soft alliance is formed.";
+          changeStats({ bondDelta: 2 });
+          break;
+        case 2:
+          result.innerText = "Madara nods without smiling. You feel the air thicken around you.";
+          changeStats({ suspicionDelta: 1, clarityDelta: 1 });
+          break;
+        case 3:
+          result.innerText = "You stand alone. Eyes linger on you longer than you’d like.";
+          changeStats({ suspicionDelta: 2 });
+          break;
+        case 4:
+          result.innerText = "Some agree. Some glare. The room divides even more.";
+          changeStats({ bondDelta: 1, suspicionDelta: 1 });
+          break;
+        case 5:
+          result.innerText = "You walk forward. The line disappears. A message only you can see: 'You're close.'";
+          changeStats({ clarityDelta: 3 });
+          break;
+      }
+
+      goToScene('scene9.html');
+    }
+  </script>
+
+</body>
+</html>

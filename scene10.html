@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scene 10: The End?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0e0e1a;
+      color: #e0e0ff;
+      font-family: 'Fira Code', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      background-color: #1c1c2e;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 30px #000;
+      max-width: 700px;
+      width: 100%;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+    p {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+    .stats {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+    .btn-restart {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #3c3c8c;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Fira Code', monospace;
+      transition: background-color 0.3s ease;
+    }
+    .btn-restart:hover {
+      background-color: #5050aa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="ending-container">
+    <h1>Calculating your ending...</h1>
+    <p>Final stats are being processed...</p>
+    <div class="stats">
+      Bond: <span id="bond">0</span> | Suspicion: <span id="suspicion">0</span> | Clarity: <span id="clarity">0</span>
+    </div>
+  </div>
+
+  <script src="js/global.js"></script>
+  <script>
+    function loadEnding() {
+      const bond = parseInt(localStorage.getItem("bond")) || 0;
+      const suspicion = parseInt(localStorage.getItem("suspicion")) || 0;
+      const clarity = parseInt(localStorage.getItem("clarity")) || 0;
+
+      document.getElementById("bond").textContent = bond;
+      document.getElementById("suspicion").textContent = suspicion;
+      document.getElementById("clarity").textContent = clarity;
+
+      let endingTitle = "";
+      let endingText = "";
+
+      if (clarity >= 5) {
+        endingTitle = "You Saw Everything";
+        endingText = "You piece together every clue. The killer wasn’t a person. It was the system itself. You escape alone, but the truth stays with you.";
+      } else if (suspicion >= 5 && clarity < 5) {
+        endingTitle = "The One Accused";
+        endingText = "They corner you. Their fear outweighs reason. Whether innocent or not, you're locked away — the game ends with your silence.";
+      } else if (bond >= 5 && suspicion < 4) {
+        endingTitle = "Together We Survive";
+        endingText = "In a final act of trust, the group moves together. You find the control room. Override successful. Freedom, earned together.";
+      } else if (suspicion >= 5 && bond < 4 && clarity < 5) {
+        endingTitle = "The Room Wins";
+        endingText = "The accusations. The doubt. One by one, they vanish. You are alone. You are next.";
+      } else {
+        endingTitle = "The Cycle Continues";
+        endingText = "You survive. But the mystery is unsolved. And the room resets… for someone else.";
+      }
+
+      const container = document.getElementById("ending-container");
+      container.innerHTML = `
+        <h1>Ending: ${endingTitle}</h1>
+        <p>${endingText}</p>
+        <div class="stats">
+          Final Bond: ${bond} | Suspicion: ${suspicion} | Clarity: ${clarity}
+        </div>
+        <button class="btn-restart" onclick="restartGame()">Restart Game</button>
+      `;
+    }
+
+    function restartGame() {
+      localStorage.setItem("bond", 0);
+      localStorage.setItem("suspicion", 0);
+      localStorage.setItem("clarity", 0);
+      window.location.href = "index.html"; // Replace with your actual main menu file name
+    }
+
+    window.onload = loadEnding;
+  </script>
+</body>
+</html>

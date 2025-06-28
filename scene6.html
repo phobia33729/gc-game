@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scene 6: The First Disappearance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #0e0e1a;
+      background-image: url('https://staticg.sportskeeda.com/editor/2022/09/636f7-16630958631343-1920.jpg');
+      color: #e0e0ff;
+      font-family: 'Fira Code', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      background-color: #1c1c2e;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 0 30px #000;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+    p {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+    .choice-btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #3c3c8c;
+      color: #fff;
+      font-family: 'Fira Code', monospace;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .choice-btn:hover {
+      background-color: #5050aa;
+    }
+    #result {
+      margin-top: 20px;
+      font-style: italic;
+      color: #9ae7ff;
+    }
+    .stats {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>The First Disappearance</h1>
+    <p>
+      A sudden siren blares. The lights go out.  
+      When they return… **Uncle Eren is gone.**  
+      No one saw anything. The room explodes in chaos.
+    </p>
+    <p>
+      You react by:
+    </p>
+
+    <button class="choice-btn" onclick="selectChoice(1)">Accusing the nearest person</button>
+    <button class="choice-btn" onclick="selectChoice(2)">Trying to calm everyone down</button>
+    <button class="choice-btn" onclick="selectChoice(3)">Searching the room silently</button>
+    <button class="choice-btn" onclick="selectChoice(4)">Comforting Bocchi, who's shaking</button>
+    <button class="choice-btn" onclick="selectChoice(5)">Standing still, observing reactions</button>
+
+    <div id="result"></div>
+    <div class="stats">
+      Bond: <span id="bond">0</span> | Suspicion: <span id="suspicion">0</span> | Clarity: <span id="clarity">0</span>
+    </div>
+  </div>
+
+  <script src="js/global.js"></script>
+  <script>
+    function selectChoice(option) {
+      const result = document.getElementById("result");
+
+      switch(option) {
+        case 1:
+          result.innerText = "Voices rise. Chaos spreads. Someone shouts, 'You're next!'";
+          changeStats({ suspicionDelta: 2 });
+          break;
+        case 2:
+          result.innerText = "You raise your hands. Slowly, the room quiets.";
+          changeStats({ bondDelta: 2 });
+          break;
+        case 3:
+          result.innerText = "Under a bed, you find a torn note: 'RUN'";
+          changeStats({ clarityDelta: 2 });
+          break;
+        case 4:
+          result.innerText = "Bocchi grabs your hand. You feel her trust grow.";
+          changeStats({ bondDelta: 2, clarityDelta: 1 });
+          break;
+        case 5:
+          result.innerText = "You see it—just for a second—Madara smiled.";
+          changeStats({ clarityDelta: 2, suspicionDelta: 1 });
+          break;
+      }
+
+      goToScene('scene7.html');
+    }
+  </script>
+
+</body>
+</html>

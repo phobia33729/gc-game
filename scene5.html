@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scene 5: The Locked Room</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #0e0e1a;
+      background-image: url('https://images5.alphacoders.com/849/849288.jpg');
+      color: #e0e0ff;
+      font-family: 'Fira Code', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      background-color: #1c1c2e;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 0 30px #000;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+    p {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+    .choice-btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #3c3c8c;
+      color: #fff;
+      font-family: 'Fira Code', monospace;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .choice-btn:hover {
+      background-color: #5050aa;
+    }
+    #result {
+      margin-top: 20px;
+      font-style: italic;
+      color: #9ae7ff;
+    }
+    .stats {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>The Locked Room</h1>
+    <p>
+      Uncle Eren discovers a sealed room none of you had noticed before.  
+      The AI voice returns:  
+      <br><strong>"Only one may enter. Choose wisely."</strong>
+    </p>
+    <p>
+      The group argues. You must act fast. You decide to:
+    </p>
+
+    <button class="choice-btn" onclick="selectChoice(1)">Volunteer to enter alone</button>
+    <button class="choice-btn" onclick="selectChoice(2)">Nominate Granny (she’s oddly quiet)</button>
+    <button class="choice-btn" onclick="selectChoice(3)">Vote as a group and respect the result</button>
+    <button class="choice-btn" onclick="selectChoice(4)">Secretly follow whoever goes in</button>
+    <button class="choice-btn" onclick="selectChoice(5)">Suggest destroying the door</button>
+
+    <div id="result"></div>
+    <div class="stats">
+      Bond: <span id="bond">0</span> | Suspicion: <span id="suspicion">0</span> | Clarity: <span id="clarity">0</span>
+    </div>
+  </div>
+
+  <script src="js/global.js"></script>
+  <script>
+    function selectChoice(option) {
+      const result = document.getElementById("result");
+
+      switch(option) {
+        case 1:
+          result.innerText = "The group stares. You step forward. The door hisses open.";
+          changeStats({ clarityDelta: 2, suspicionDelta: 1 });
+          break;
+        case 2:
+          result.innerText = "Granny narrows her eyes. 'Why me?' she asks.";
+          changeStats({ suspicionDelta: 2 });
+          break;
+        case 3:
+          result.innerText = "A fair vote. Madara is chosen. He nods and enters.";
+          changeStats({ bondDelta: 2 });
+          break;
+        case 4:
+          result.innerText = "You sneak behind. Inside... something glows red.";
+          changeStats({ clarityDelta: 2, suspicionDelta: 2 });
+          break;
+        case 5:
+          result.innerText = "The door resists, but now everyone is looking at you strangely.";
+          changeStats({ suspicionDelta: 3 });
+          break;
+      }
+
+      goToScene('scene6.html');
+    }
+  </script>
+
+</body>
+</html>

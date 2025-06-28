@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scene 7: Whispers in the Dark</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #0e0e1a;
+      background-image: url('https://imgix.ranker.com/list_img_v2/17723/2757723/original/loudest-anime-characters-who-scream-a-lot?auto=format&q=60&fit=crop&fm=pjpg&dpr=2&crop=faces&h=198&w=350');
+    background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background-color: #1c1c2e;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 0 30px #000;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+    p {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+    .choice-btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #3c3c8c;
+      color: #fff;
+      font-family: 'Fira Code', monospace;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .choice-btn:hover {
+      background-color: #5050aa;
+    }
+    #result {
+      margin-top: 20px;
+      font-style: italic;
+      color: #9ae7ff;
+    }
+    .stats {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Whispers in the Dark</h1>
+    <p>
+      That night, while most try to sleep, you hear quiet whispers near the hallway.  
+      Someone is definitely meeting in secret.  
+      You move closer...
+    </p>
+    <p>
+      What do you do next?
+    </p>
+
+    <button class="choice-btn" onclick="selectChoice(1)">Sneak closer and listen carefully</button>
+    <button class="choice-btn" onclick="selectChoice(2)">Interrupt them directly</button>
+    <button class="choice-btn" onclick="selectChoice(3)">Use the distraction to search rooms</button>
+    <button class="choice-btn" onclick="selectChoice(4)">Whisper loudly: “I know what you’re planning.”</button>
+    <button class="choice-btn" onclick="selectChoice(5)">Tell Bocchi to follow them while you watch from afar</button>
+
+    <div id="result"></div>
+    <div class="stats">
+      Bond: <span id="bond">0</span> | Suspicion: <span id="suspicion">0</span> | Clarity: <span id="clarity">0</span>
+    </div>
+  </div>
+
+  <script src="js/global.js"></script>
+  <script>
+    function selectChoice(option) {
+      const result = document.getElementById("result");
+
+      switch(option) {
+        case 1:
+          result.innerText = "You hear two names whispered: 'Granny' and 'Madara'... plotting?";
+          changeStats({ clarityDelta: 2 });
+          break;
+        case 2:
+          result.innerText = "They scatter like shadows. You’re now a threat.";
+          changeStats({ suspicionDelta: 2 });
+          break;
+        case 3:
+          result.innerText = "You find nothing—except a page from someone’s diary.";
+          changeStats({ clarityDelta: 1 });
+          break;
+        case 4:
+          result.innerText = "Someone gasps. Someone runs. You've just made yourself a target.";
+          changeStats({ suspicionDelta: 3 });
+          break;
+        case 5:
+          result.innerText = "Bocchi nods. She disappears into the dark... and returns pale.";
+          changeStats({ bondDelta: 1, clarityDelta: 2 });
+          break;
+      }
+
+      goToScene('scene8.html');
+    }
+  </script>
+
+</body>
+</html>

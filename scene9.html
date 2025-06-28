@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scene 9: The Revelation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #0e0e1a;
+      background-image: url('https://images.wallpaperscraft.com/image/single/girl_buildings_city_1060155_3840x2160.jpg');
+      color: #e0e0ff;
+      font-family: 'Fira Code', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      background-color: #1c1c2e;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 0 30px #000;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+    p {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+    .choice-btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #3c3c8c;
+      color: #fff;
+      font-family: 'Fira Code', monospace;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .choice-btn:hover {
+      background-color: #5050aa;
+    }
+    #result {
+      margin-top: 20px;
+      font-style: italic;
+      color: #9ae7ff;
+    }
+    .stats {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>The Revelation</h1>
+    <p>
+      A hidden panel slides open. A file is inside.  
+      <br><strong>Your name is on the cover.</strong>  
+      And one more name: <em>“The Controller.”</em>
+    </p>
+    <p>What do you do?</p>
+
+    <button class="choice-btn" onclick="selectChoice(1)">Open the file and read it</button>
+    <button class="choice-btn" onclick="selectChoice(2)">Destroy the file — it feels wrong</button>
+    <button class="choice-btn" onclick="selectChoice(3)">Show the file to Bocchi and DPS</button>
+    <button class="choice-btn" onclick="selectChoice(4)">Accuse the nearest person of planting it</button>
+    <button class="choice-btn" onclick="selectChoice(5)">Keep it. Say nothing.</button>
+
+    <div id="result"></div>
+    <div class="stats">
+      Bond: <span id="bond">0</span> | Suspicion: <span id="suspicion">0</span> | Clarity: <span id="clarity">0</span>
+    </div>
+  </div>
+
+  <script src="js/global.js"></script>
+  <script>
+    function selectChoice(option) {
+      const result = document.getElementById("result");
+
+      switch(option) {
+        case 1:
+          result.innerText = "You see names, logs, outcomes... You're part of something far bigger.";
+          changeStats({ clarityDelta: 3 });
+          break;
+        case 2:
+          result.innerText = "It burns. Others stare. Suspicion rises.";
+          changeStats({ suspicionDelta: 2 });
+          break;
+        case 3:
+          result.innerText = "Bocchi reads. DPS flinches. This changes everything.";
+          changeStats({ bondDelta: 2, clarityDelta: 1 });
+          break;
+        case 4:
+          result.innerText = "They panic. You lose credibility. The group fractures.";
+          changeStats({ suspicionDelta: 3 });
+          break;
+        case 5:
+          result.innerText = "You keep it. Someone saw. You feel power and danger all at once.";
+          changeStats({ clarityDelta: 2, suspicionDelta: 1 });
+          break;
+      }
+
+      goToScene('scene10.html');
+    }
+  </script>
+
+</body>
+</html>

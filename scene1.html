@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scene 1: Dorm Awakening</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-image: url('https://i0.wp.com/www.otakupt.com/wp-content/uploads/2019/01/Screenshot_20190118-155455_Chrome.jpg?resize=696%2C392&ssl=1'); /* Replace with valid URL */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.65);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 30px #000;
+      text-align: center;
+      max-width: 700px;
+      width: 90%;
+      backdrop-filter: blur(6px);
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .choice {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid #ccc;
+      padding: 12px 20px;
+      margin: 12px auto;
+      cursor: pointer;
+      border-radius: 8px;
+      max-width: 320px;
+      transition: background-color 0.3s ease;
+    }
+
+    .choice:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .stats-box {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-style: italic;
+      color: #00ffff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Dorm Awakening</h1>
+    <p>You wake up in a dim dorm room. The AI says coldly: <i>"Only one will leave Room 404 alive."</i></p>
+    <p>The others stare at you in silence. You must choose who to engage with first...</p>
+
+    <div class="choice" onclick="selectChoice(1)">Talk to Bocchi</div>
+    <div class="choice" onclick="selectChoice(2)">Slap Eren</div>
+    <div class="choice" onclick="selectChoice(3)">Sit with Granny</div>
+    <div class="choice" onclick="selectChoice(4)">Laugh with Scum</div>
+    <div class="choice" onclick="selectChoice(5)">Ignore everyone</div>
+
+    <div id="result"></div>
+  </div>
+
+  <div class="stats-box">
+    Bond: <span id="bond">0</span><br>
+    Suspicion: <span id="suspicion">0</span><br>
+    Clarity: <span id="clarity">0</span>
+  </div>
+
+  <script src="js/global.js"></script>
+  <script>
+    function selectChoice(option) {
+      const result = document.getElementById("result");
+
+      switch(option) {
+        case 1:
+          result.innerText = "Bocchi blushes and smiles shyly. Trust begins to form.";
+          changeStats({ bondDelta: 3 });
+          break;
+        case 2:
+          result.innerText = "Eren catches your hand and glares. Everyone grows tense.";
+          changeStats({ suspicionDelta: 2 });
+          break;
+        case 3:
+          result.innerText = "Granny pats your hand gently. 'You're not like the others, are you?'";
+          changeStats({ clarityDelta: 1, bondDelta: 1 });
+          break;
+        case 4:
+          result.innerText = "Scum laughs with you... but you hear others whispering.";
+          changeStats({ bondDelta: 1, suspicionDelta: 1 });
+          break;
+        case 5:
+          result.innerText = "Your silence chills the room. You feel isolated already.";
+          changeStats({ suspicionDelta: 2 });
+          break;
+      }
+
+      // Proceed to next scene
+      setTimeout(() => {
+        goToScene("scene2.html");
+      }, 1000); // delay for better pacing
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

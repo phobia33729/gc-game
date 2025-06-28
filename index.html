@@ -1,0 +1,69 @@
+<!-- index.html (Main Menu) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Killer Mystery - Start Game</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Courier New', monospace;
+      background: url('https://i.imgur.com/Ux0GOr7.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
+    .menu-box {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+      max-width: 600px;
+    }
+    .menu-box h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .menu-box p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .start-button {
+      margin-top: 30px;
+      padding: 14px 28px;
+      background: #00ffff;
+      color: #000;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    .start-button:hover {
+      background: #00dddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu-box">
+    <h1>Killer Mystery</h1>
+    <p><strong>Rules:</strong></p>
+    <p>You are trapped in a simulation with 11 others. One is a killer. Each choice changes the stats and determines your fate. Survive, uncover the truth, or face annihilation.</p>
+    <p>Your choices influence 3 hidden stats: <em>Bond, Suspicion, Clarity</em>. Your ending depends on them.</p>
+    <button class="start-button" onclick="startGame()">Start Game</button>
+  </div>
+
+  <script>
+    function startGame() {
+      localStorage.clear();
+      window.location.href = 'scene1.html';
+    }
+  </script>
+</body>
+</html>
