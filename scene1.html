@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Scene 1: Dorm Awakening</title>
+  <title>Dorm Awakening</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -97,40 +97,43 @@
   </div>
 
   <script src="js/global.js"></script>
-  <script>
-    function selectChoice(option) {
-      const result = document.getElementById("result");
+<script>
+  function goToScene(sceneFile) {
+    window.location.href = sceneFile;
+  }
 
-      switch(option) {
-        case 1:
-          result.innerText = "Bocchi blushes and smiles shyly. Trust begins to form.";
-          changeStats({ bondDelta: 3 });
-          break;
-        case 2:
-          result.innerText = "Eren catches your hand and glares. Everyone grows tense.";
-          changeStats({ suspicionDelta: 2 });
-          break;
-        case 3:
-          result.innerText = "Granny pats your hand gently. 'You're not like the others, are you?'";
-          changeStats({ clarityDelta: 1, bondDelta: 1 });
-          break;
-        case 4:
-          result.innerText = "Scum laughs with you... but you hear others whispering.";
-          changeStats({ bondDelta: 1, suspicionDelta: 1 });
-          break;
-        case 5:
-          result.innerText = "Your silence chills the room. You feel isolated already.";
-          changeStats({ suspicionDelta: 2 });
-          break;
-      }
+  function selectChoice(option) {
+    const result = document.getElementById("result");
 
-      // Proceed to next scene
-      setTimeout(() => {
-        goToScene("scene2.html");
-      }); // delay for better pacing
+    switch(option) {
+      case 1:
+        result.innerText = "Bocchi blushes and smiles shyly. Trust begins to form.";
+        changeStats({ bondDelta: 3 });
+        break;
+      case 2:
+        result.innerText = "Eren catches your hand and glares. Everyone grows tense.";
+        changeStats({ suspicionDelta: 2 });
+        break;
+      case 3:
+        result.innerText = "Granny pats your hand gently. 'You're not like the others, are you?'";
+        changeStats({ clarityDelta: 1, bondDelta: 1 });
+        break;
+      case 4:
+        result.innerText = "Scum laughs with you... but you hear others whispering.";
+        changeStats({ bondDelta: 1, suspicionDelta: 1 });
+        break;
+      case 5:
+        result.innerText = "Your silence chills the room. You feel isolated already.";
+        changeStats({ suspicionDelta: 2 });
+        break;
     }
-    window.location.href = 'scene2.html'
-  </script>
+
+    // Proceed to next scene after a short delay
+    setTimeout(() => {
+      goToScene("scene2.html");
+    }, 1000); // optional 1 second delay for drama
+  }
+</script>
 
 
 
